@@ -35,7 +35,7 @@ function setup(){
         }   
     });
 
-    Render.run(render);
+    // Render.run(render);
 
 }
 
