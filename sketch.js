@@ -2,9 +2,14 @@ const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
-const Render = Matter.Render;
+//  const Render = Matter.Render;
 
 var engine, world;
+var backgroundImg;
+
+function preload() {
+    backgroundImg = loadImage("c.jpg");
+}
 
 function setup(){
     var canvas = createCanvas(1200,400);
@@ -14,48 +19,65 @@ function setup(){
     ground = new Ground(600,height,1700,20)
 
     DustbinObj = new Dustbin(910,315,150,0);
-
+    legobj = new Leg(210,300,90,PI/12)
+    boy = new Boy(160,230,300,0);
     side1 = new Side(864,315,150, -PI/13);
     side2 = new Side(955,315,150, PI/13);
     side3 = new Side(915,380,70,PI/2);
     
-    paperObj = new PaperBall(150,330,20);
+    paperObj = new PaperBall(180,330,35,40);
 
-    slingshot = new SlingShot(paperObj.body,{x:150, y:150});
+    slingshot = new SlingShot(paperObj.body,{x:250, y:270});
+    slingshot1 = new SlingShot(legobj.body,{x:175, y:260});
 
     
 
-    var render = Render.create({    
-        element: document.body,    
-        engine: engine,    
-        options: 
-        {   width: 1200, 
-            height: 700,    
-            wireframes: false    
-        }   
-    });
+    // var render = Render.create({    
+    //     element: document.body,    
+    //     engine: engine,    
+    //     options: 
+    //     {   width: 1200, 
+    //         height: 700,    
+    //         wireframes: false    
+    //     }   
+    // });
 
     // Render.run(render);
 
 }
 
 function draw(){
-    background("#808080");
+    background(backgroundImg);
     Engine.update(engine);
-    slingshot.display();
+    // slingshot.display();
+    slingshot1.display();
+     legobj.display();
+    
+    boy.display();
+    
     paperObj.display();
     ground.display();
     DustbinObj.display();
     
+    
 }
 
+function keyPressed(){
+    if(keyCode === 32){
+        slingshot.attach(paperObj.body);
+        slingshot1.attach(legobj.body);
+    }
+}
 
 function mouseDragged(){
     Matter.Body.setPosition(paperObj.body, {x: mouseX , y: mouseY});
+    Matter.Body.setPosition(legobj.body, {x: mouseX , y: mouseY});
 }
 
 function mouseReleased(){
     slingshot.fly();
+    Matter.Body.setPosition(legobj.body, {x: 200 , y: 300});
+    
 }
 
 

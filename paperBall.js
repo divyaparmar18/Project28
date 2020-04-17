@@ -8,8 +8,8 @@ class PaperBall {
       };
 
       this.body = Matter.Bodies.circle(x, y, radius, options)
-      this.radius = 50;
-      this.image = loadImage("paperball.png")
+      this.radius = 80;
+      this.image = loadImage("bot.png")
       World.add(world, this.body);
       
     };
@@ -19,7 +19,7 @@ class PaperBall {
       translate(this.body.position.x, this.body.position.y);
       rotate(angle);
       imageMode(CENTER);
-      image(this.image, 0, 0, 50,50);
+      image(this.image, 0, 0, 80,50);
       pop();
     };
   };
