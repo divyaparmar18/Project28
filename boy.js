@@ -9,7 +9,7 @@ class Boy {
       this.width = 200;
       this.height = height;
       Matter.Body.setAngle(this.body, angle);
-      this.image = loadImage("by.png")
+      this.image = loadImage("boy.png")
       World.add(world, this.body);
 
     }

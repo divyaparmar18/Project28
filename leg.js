@@ -9,7 +9,7 @@ class Leg {
     this.width = 100;
     this.height = height;
     Matter.Body.setAngle(this.body, angle);
-    this.image = loadImage("lg.png")
+    this.image = loadImage("leg.png")
     World.add(world, this.body);
 
   }
